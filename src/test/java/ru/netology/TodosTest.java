@@ -41,8 +41,8 @@ public class TodosTest {
 
         boolean expected = true;
         boolean actual = simpleTask.matches("Позвонить родителям");
-        Assertions.assertEquals(expected, actual);
 
+        Assertions.assertEquals(expected, actual);
         Assertions.assertEquals(expected, actual);
     }
 
@@ -53,6 +53,7 @@ public class TodosTest {
 
         boolean expected = false;
         boolean actual = simpleTask.matches("Не звонить родителям");
+
         Assertions.assertEquals(expected, actual);
 
     }
@@ -65,6 +66,7 @@ public class TodosTest {
 
         boolean expected = true;
         boolean actual = epic.matches("Яйца");
+
         Assertions.assertEquals(expected, actual);
 
     }
@@ -77,6 +79,7 @@ public class TodosTest {
 
         boolean expected = false;
         boolean actual = epic.matches("Масло");
+
         Assertions.assertEquals(expected, actual);
 
     }
@@ -87,9 +90,9 @@ public class TodosTest {
         Meeting meeting = new Meeting(5, "Выкатка 3й версии приложения",
                 "Приложение НетоБанка", "Во вторник после обеда");
 
-
         boolean expected = true;
         boolean actual = meeting.matches("Приложение НетоБанка");
+
         Assertions.assertEquals(expected, actual);
 
     }
@@ -103,6 +106,7 @@ public class TodosTest {
 
         boolean expected = false;
         boolean actual = meeting.matches("Выкатка 2й версии приложения");
+
         Assertions.assertEquals(expected, actual);
 
     }
@@ -116,6 +120,7 @@ public class TodosTest {
 
         Task[] expected = todos.search("Позвонить родителям");
         Task[] actual = {simpleTask};
+
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -131,6 +136,7 @@ public class TodosTest {
 
         Task[] expected = todos.search("Яйца");
         Task[] actual = {epic};
+
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -149,6 +155,7 @@ public class TodosTest {
 
         Task[] expected = todos.search("Выкатка 3й версии приложения");
         Task[] actual = {meeting};
+
         Assertions.assertArrayEquals(expected, actual);
     }
 
