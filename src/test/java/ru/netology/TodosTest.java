@@ -43,7 +43,7 @@ public class TodosTest {
         boolean actual = simpleTask.matches("Позвонить родителям");
 
         Assertions.assertEquals(expected, actual);
-        Assertions.assertEquals(expected, actual);
+
     }
 
     @Test
@@ -141,7 +141,8 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldFindTodosMeeting() {
+    public void shouldFindTodosSeveralTasks() {
+        SimpleTask simpleTask = new SimpleTask(5, "Выкатка 3й версии приложения");
 
         Meeting meeting = new Meeting(
                 555,
@@ -151,10 +152,38 @@ public class TodosTest {
         );
         Todos todos = new Todos();
 
+        todos.add (simpleTask);
         todos.add(meeting);
 
         Task[] expected = todos.search("Выкатка 3й версии приложения");
-        Task[] actual = {meeting};
+        Task[] actual = {simpleTask, meeting};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldNotFindTodosTask() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = todos.search("Нет такого запроса");
+        Task[] actual = {};
+
 
         Assertions.assertArrayEquals(expected, actual);
     }
